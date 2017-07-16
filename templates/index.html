@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block body %}
+{% include "navbar.html"%}
+
+<div class="blog-masthead">
+    <div class="container">
+      <nav class="blog-nav"><! 최상단 bar 표시 >
+        <a class="blog-nav-item active" href="#">Home</a>
+        <a class="blog-nav-item" href="#">About</a>
+      </nav>
+    </div>
+</div>
+
+<div class="container">
+  <div class="blog-header">
+      <h1 class="blog-title">Imagineer Blog</h1>
+      <p class="lead blog-description">The first blog create by Imagineeer.</p>
+  </div>
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="blog-post">
+        <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
+        {% for article in article_list %}
+        Sample blog post
+          <h2 class="blog-post-title"><! article & content 표시 >
+            <a href="/{{ article.id }}/">
+              {{ article.title }}
+            </a>
+          </h2>
+          <p> {{ article.content }} </p>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+
+      <div class="sidebar-module"><! category 표시 >
+        <h4>Categories</h4>
+        <ol class="list-unstyled">
+          <li><a href="/">all</a>  </li>
+          {% for alias, category in category_list %}
+          <li><a href="/?category={{ alias }}">{{ category}}</a>  </li>
+          {% endfor %}
+        </ol>
+      </div>
+
+      <div class="sidebar-module"><! HashTags 표시 >
+        <h4>HashTags</h4>
+        <ol class="list-unstyled">
+          {% for hashtag in hashtag_list %}
+          <li> <a href="/?hashtag={{ hashtag.name }}"> {{ hashtag }} </a> </li>
+          {% endfor %}
+        </ol>
+      </div>
+
+
+      <div class="sidebar-module">  </div>
+      col-sm-4
+    </div>
+  </div>
+</div>
+
+{% endblock %}
